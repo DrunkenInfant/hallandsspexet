@@ -1,0 +1,43 @@
+.hallandsspexet-food__select-list, .hallandsspexet-food__aggregate-list {
+	padding: 0;
+	vertical-align: top;
+	display: inline-block;
+}
+
+.hallandsspexet-food__select-list li,
+	.hallandsspexet-food__aggregate-list li {
+	padding: 7px 10px 3px 10px;
+	display: block;
+}
+
+.hallandsspexet-food__select-list {
+	margin-right: 50px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.hallandsspexet-food__select-list li {
+	cursor: pointer;
+}
+
+.hallandsspexet-food__select-list li:nth-child(odd) {
+	background-color: #f9f9f9;
+}
+
+.hallandsspexet-food__select-list li.selected {
+	color: #FFF;
+	background-color: #36abfc;
+}
+
+.hallandsspexet-food__aggregate-list {
+}
+
+.hallandsspexet-food__aggregate-list li {
+	position: relative;
+	padding-right: 20px;
+}
+
+.hallandsspexet-food__aggregate-list li:after {
+	position: absolute;
+	right: 0;
+	content: attr(data-count);
+}

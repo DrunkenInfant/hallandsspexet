@@ -3,15 +3,20 @@
  * Plugin Name: Hallandsspexet food
  */
 
-$FOOD_PREFS = [
-	"vegetarian",
-	"gluten",
-	"lactose"
-];
+$FOOD_PREFS = array(
+	'vegetarian' => 'Vegetarian',
+	'gluten' => 'Gluten',
+	'lactose' => 'Lactose'
+);
 
 $META_KEY = 'hallandsspexet_food';
 
+$DISPLAY_VALUE = 'Food preferences';
+
 wp_register_style('hallandsspexet_food_style', plugins_url('hallansspexet-food.css', __FILE__));
+
+add_filter('manage_users_columns', 'hallandsspexet_food_users_table');
+add_filter('manage_users_custom_column', 'hallandsspexet_food_users_table_row', 15, 3);
 
 add_action('show_user_profile', 'hallandsspexet_food_form');
 add_action('edit_user_profile', 'hallandsspexet_food_form');
@@ -26,11 +31,11 @@ function hallandsspexet_food_form($user) {
 	$preferences = get_user_meta($user->ID, $META_KEY);
 ?>
 
-	<h3>Food preferences</h3>
+	<h3><?= $DISPLAY_VALUE ?></h3>
 	<table class="form-table">
-	<?php foreach ($FOOD_PREFS as $food) { ?>
+	<?php foreach ($FOOD_PREFS as $food => $name) { ?>
 		<tr>
-			<th><label><?= $food ?></label></th>
+			<th><label><?= $name ?></label></th>
 			<td><input type="checkbox" name="<?= $META_KEY ?>[]" value="<?= $food ?>" <?= in_array($food, $preferences) ? 'checked="checked"' : '' ?>/></td>
 		</tr>
 	<?php } ?>
@@ -40,7 +45,6 @@ function hallandsspexet_food_form($user) {
 }
 
 function hallandsspexet_food_update($user_id) {
-	global $FOOD_PREFS;
 	global $META_KEY;
 
 	delete_user_meta($user_id, $META_KEY);
@@ -49,6 +53,25 @@ function hallandsspexet_food_update($user_id) {
 		foreach ($_POST[$META_KEY] as $food) {
 			add_user_meta($user_id, $META_KEY, sanitize_text_field($food));
 		}
+	}
+}
+
+function hallandsspexet_food_users_table($columns) {
+	global $META_KEY;
+	global $DISPLAY_VALUE;
+	$columns[$META_KEY] = $DISPLAY_VALUE;
+	return $columns;
+}
+
+function hallandsspexet_food_users_table_row($val, $column_name, $user_id) {
+	global $META_KEY;
+	global $FOOD_PREFS;
+
+	if ($column_name === $META_KEY) {
+		$food =  array_map(function ($key) { global $FOOD_PREFS; return $FOOD_PREFS[$key]; }, get_user_meta($user_id, $column_name));
+		return $food ? implode(', ', $food) : '';
+	} else {
+		return $val;
 	}
 }
 
@@ -64,8 +87,8 @@ function hallandsspexet_food_list() {
 <?php } ?>
 </ul>
 <ul class="hallandsspexet-food__aggregate-list">
-<?php foreach ($FOOD_PREFS as $food) { ?>
-	<li class="hallandsspexet-food__aggregate-item" data-food="<?= $food ?>" data-count="0"><?= $food ?></li>
+<?php foreach ($FOOD_PREFS as $food => $name) { ?>
+	<li class="hallandsspexet-food__aggregate-item" data-food="<?= $food ?>" data-count="0"><?= $name ?></li>
 <?php } ?>
 </ul>
 <script>

@@ -1,0 +1,31 @@
+#your-profile > h3:nth-of-type(1) {
+	display: none;
+}
+
+#your-profile > h3:nth-of-type(4) {
+	display: none;
+}
+
+.show-admin-bar { 
+	display: none;
+}
+
+.user-rich-editing-wrap { 
+	display: none;
+}
+
+.user-admin-color-wrap { 
+	display: none;
+}
+
+.user-comment-shortcuts-wrap { 
+	display: none;
+}
+
+.user-url-wrap {
+	display: none;
+}
+
+.user-description-wrap {
+	display: none;
+}

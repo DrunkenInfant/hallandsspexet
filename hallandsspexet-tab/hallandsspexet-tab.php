@@ -9,8 +9,8 @@ $HS_TAB_DISPLAY_NAME = 'Kredit';
 
 wp_register_style('hallandsspexet_tab_style', plugins_url('hallandsspexet-tab.css', __FILE__));
 
-add_filter('manage_users_columns', 'hallandsspexet_tab_users_table');
-add_filter('manage_users_custom_column', 'hallandsspexet_tab_users_table_row', 15, 3);
+//add_filter('manage_users_columns', 'hallandsspexet_tab_users_table');
+//add_filter('manage_users_custom_column', 'hallandsspexet_tab_users_table_row', 15, 3);
 
 add_action('admin_menu', 'hallandsspexet_tab_admin_menu');
 
@@ -80,7 +80,14 @@ function hallandsspexet_tab_admin_page() {
 ?>
 <ul class="hallandsspexet-tab__select-list">
 <?php foreach ($users as $user) { ?>
-	<li class="hallandsspexet-tab__select-item" data-user="<?= $user->ID ?>"><?= $user->display_name ?></li>
+	<li class="hallandsspexet-tab__select-item" data-user="<?= $user->ID ?>">
+		<?= $user->display_name ?>
+		<span><?= !isset($tabs[$user->ID]) ? 0 :
+		array_reduce($tabs[$user->ID], function ($sum, $tab) {
+			return $sum + $tab['value'];
+		}, 0)
+		?>
+	</li>
 <?php } ?>
 </ul>
 <table class="hallandsspexet-tab__aggregate-list">

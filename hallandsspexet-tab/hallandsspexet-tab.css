@@ -5,17 +5,14 @@
 	display: inline-block;
 }
 
-.hallandsspexet-tab__select-list li {
-	padding: 7px 10px 3px 10px;
-	display: block;
-}
-
 .hallandsspexet-tab__select-list {
 	margin-right: 50px;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .hallandsspexet-tab__select-list li {
+	padding: 7px 10px 3px 10px;
+	display: block;
 	cursor: pointer;
 }
 
@@ -26,6 +23,13 @@
 .hallandsspexet-tab__select-list li.selected {
 	color: #FFF;
 	background-color: #36abfc;
+}
+
+.hallandsspexet-tab__select-list li span {
+	float: right;
+	padding-left: 10px;
+	cursor: initial;
+	pointer-events: none;
 }
 
 .hallandsspexet-tab__aggregate-list {

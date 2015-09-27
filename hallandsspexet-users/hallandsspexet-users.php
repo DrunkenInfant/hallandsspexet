@@ -82,13 +82,14 @@ function hallandsspexet_users_table_row($val, $column_name, $user_id) {
 function hallandsspexet_users_form($user) {
 	global $COMMITTEES;
 	global $COMMITTEES_META_KEY;
+	global $COMMITTEES_DISPLAY_NAME;
 
 	wp_enqueue_style('hallandsspexet_users_style');
 
 	$committees = get_user_meta($user->ID, $COMMITTEES_META_KEY);
 ?>
 
-	<h3>Committees</h3>
+	<h3><?= $COMMITTEES_DISPLAY_NAME ?></h3>
 	<table class="form-table">
 	<?php foreach ($COMMITTEES as $key => $value) { ?>
 		<tr>

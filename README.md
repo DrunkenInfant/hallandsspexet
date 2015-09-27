@@ -1,5 +1,21 @@
 # Hallandsspexet website projects
 
+WP customizations for hallandsspexet webpage
+
+## Custom plugins
+
+### Hallandsspexet food
+
+### Hallandsspexet users
+
+### Hallandsspexet tab
+
+## Third party plugins
+
+* Easy WP SMTP
+* Events Manager
+* WordPress Access Control
+
 ## TODO
 
 1. (DONE) Medlemsregistrering (sköts av admin).
@@ -18,7 +34,7 @@
 
 3.b Spexare kan se sin egen nota.
 
-3.c Admins kan se och lägga till kredit på alla spexares notor.
+3.c (DONE) Admins kan se och lägga till kredit på alla spexares notor.
 
 4. (DONE) Admins kan se detaljerad information om spexarna
    Namn

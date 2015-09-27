@@ -13,7 +13,7 @@ $META_KEY = 'hallandsspexet_food';
 
 $DISPLAY_VALUE = 'Food preferences';
 
-wp_register_style('hallandsspexet_food_style', plugins_url('hallansspexet-food.css', __FILE__));
+wp_register_style('hallandsspexet_food_style', plugins_url('hallandsspexet-food.css', __FILE__));
 
 add_filter('manage_users_columns', 'hallandsspexet_food_users_table');
 add_filter('manage_users_custom_column', 'hallandsspexet_food_users_table_row', 15, 3);

@@ -24,7 +24,7 @@ WP customizations for hallandsspexet webpage
    Namn
    email
    telefonnummer
-   utskott
+   utskott (olika listor)
 
 3.a (DONE) Spexare har nota, kredit för fester, baren och föreställningar.
 	Fester: Auto
@@ -47,7 +47,7 @@ WP customizations for hallandsspexet webpage
 5. (DONE) generera deltagarlistor för fester med matpreferenser.
 
 6. ?? Generera deltagarlista inför fest. Matpreferenser och telefonnummer bör vara
-   med på listan.
+   med på listan. Filter in events manager?
 
 7. Reservera biljetter. Manuell betalningsverifiering (admin).
    1. (DONE) Skapa föreställningar (tid, lokal, antal, biljetter, pris osv)
@@ -72,5 +72,5 @@ WP customizations for hallandsspexet webpage
 
 13. Bildgalleri
 
-14. (DELAYED) Extern kalender. Endast synlig för spexare. Innehåller länkar till
+14. Extern kalender. Endast synlig för spexare. Innehåller länkar till
    Facebook-events.

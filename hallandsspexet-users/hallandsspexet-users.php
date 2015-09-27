@@ -4,8 +4,11 @@
  */
 
 $CONTACT_FIELDS = array(
-	'phone' => __('Phone number'),
-	'personal_id_number' => __('Personal identification number')
+	'phone' => __('Telefonnummer'),
+	'streetaddress' => __('Gatuadress'),
+	'postalcode' => __('Postnummer'),
+	'city' => __('Stad'),
+	'personal_id_number' => __('Personnummer')
 );
 
 $COMMITTEES = array(
@@ -52,11 +55,12 @@ function hallandsspexet_users_table($columns) {
 	global $COMMITTEES_DISPLAY_NAME;
 
 	unset($columns['posts']);
+	unset($columns['role']);
 	foreach ($CONTACT_FIELDS as $key => $value) {
 		$columns[$key] = $value;
 	}
 
-	$columns[$COMMITTEES_META_KEY] = $COMMITTEES_DISPLAY_NAME;
+	//$columns[$COMMITTEES_META_KEY] = $COMMITTEES_DISPLAY_NAME;
 
 	return $columns;
 }
@@ -66,10 +70,10 @@ function hallandsspexet_users_table_row($val, $column_name, $user_id) {
 	global $CONTACT_FIELDS;
 	global $COMMITTEES_META_KEY;
 
-	if ($column_name == $COMMITTEES_META_KEY) {
-		return $COMMITTEES[get_user_meta($user_id, $column_name, true)];
-	} else if ($CONTACT_FIELDS[$column_name]) {
+	if ($CONTACT_FIELDS[$column_name]) {
 		return get_user_meta($user_id, $column_name, true);
+	//} else if ($column_name == $COMMITTEES_META_KEY) {
+		//return $COMMITTEES[get_user_meta($user_id, $column_name, true)];
 	} else {
 		return $val;
 	}
@@ -81,7 +85,7 @@ function hallandsspexet_users_form($user) {
 
 	wp_enqueue_style('hallandsspexet_users_style');
 
-	$committee = get_user_meta($user->ID, $COMMITTEES_META_KEY, true);
+	$committees = get_user_meta($user->ID, $COMMITTEES_META_KEY);
 ?>
 
 	<h3>Committees</h3>
@@ -89,7 +93,7 @@ function hallandsspexet_users_form($user) {
 	<?php foreach ($COMMITTEES as $key => $value) { ?>
 		<tr>
 			<th><label><?= $value ?></label></th>
-			<td><input type="radio" name="<?= $COMMITTEES_META_KEY ?>" value="<?= $key ?>" <?= $key == $committee ? 'checked="checked"' : '' ?>/></td>
+			<td><input type="checkbox" name="<?= $COMMITTEES_META_KEY ?>[]" value="<?= $key ?>" <?= in_array($key, $committees) ? 'checked="checked"' : '' ?>/></td>
 		</tr>
 	<?php } ?>
 	</table>
@@ -104,7 +108,9 @@ function hallandsspexet_users_update($user_id) {
 	delete_user_meta($user_id, $COMMITTEES_META_KEY);
 
 	if (isset($_POST[$COMMITTEES_META_KEY])) {
-		add_user_meta($user_id, $COMMITTEES_META_KEY, sanitize_text_field($_POST[$COMMITTEES_META_KEY]));
+		foreach ($_POST[$COMMITTEES_META_KEY] as $comm) {
+			add_user_meta($user_id, $COMMITTEES_META_KEY, sanitize_text_field($comm));
+		}
 	}
 }
 

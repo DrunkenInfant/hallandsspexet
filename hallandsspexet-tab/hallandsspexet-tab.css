@@ -1,0 +1,70 @@
+.hallandsspexet-tab__select-list {
+	float: left;
+	padding: 0;
+	vertical-align: top;
+	display: inline-block;
+}
+
+.hallandsspexet-tab__select-list li {
+	padding: 7px 10px 3px 10px;
+	display: block;
+}
+
+.hallandsspexet-tab__select-list {
+	margin-right: 50px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.hallandsspexet-tab__select-list li {
+	cursor: pointer;
+}
+
+.hallandsspexet-tab__select-list li:nth-child(odd) {
+	background-color: #f9f9f9;
+}
+
+.hallandsspexet-tab__select-list li.selected {
+	color: #FFF;
+	background-color: #36abfc;
+}
+
+.hallandsspexet-tab__aggregate-list {
+	border: 1px solid #ddd;
+	border-collapse: collapse;
+}
+
+.hallandsspexet-tab__aggregate-list thead {
+	font-size: 1.2em;
+}
+
+.hallandsspexet-tab__aggregate-list thead tr {
+	padding: 0;
+}
+
+.hallandsspexet-tab__aggregate-list thead th {
+	padding: 20px;
+}
+
+.hallandsspexet-tab__aggregate-list tbody {
+	padding: 0;
+}
+
+.hallandsspexet-tab__aggregate-list tbody tr:nth-child(odd) {
+	background-color: #f5f5f5;
+}
+
+.hallandsspexet-tab__aggregate-list tbody tr:nth-child(even) {
+	background-color: #eee;
+}
+
+.hallandsspexet-tab__aggregate-list tbody tr.tab-total {
+	font-weight: bold;
+}
+
+.hallandsspexet-tab__aggregate-list tbody td {
+	padding: 10px;
+}
+
+.hallandsspexet-tab__new-item-form.hidden {
+	display: none;
+}

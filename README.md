@@ -10,10 +10,17 @@
    telefonnummer
    utskott
 
-1.a Spexare har nota, kredit för fester, baren och föreställningar. Fester och
-    föreställningar ska vara automagiska. Hook på ticket approved??
+3.a (DONE) Spexare har nota, kredit för fester, baren och föreställningar.
+	Fester: Auto
+    Föreställningar: Atuo
+	Bar: Manuell
+	Övrigt: Manuell
 
-2. (DONE) Admins kan se detaljerad information om spexarna
+3.b Spexare kan se sin egen nota.
+
+3.c Admins kan se och lägga till kredit på alla spexares notor.
+
+4. (DONE) Admins kan se detaljerad information om spexarna
    Namn
    personnummer
    email
@@ -21,31 +28,33 @@
    utskott
    matpreferenser
 
-2. (DONE) generera deltagarlistor för fester med matpreferenser.
+5. (DONE) generera deltagarlistor för fester med matpreferenser.
 
-3. ?? Generera deltagarlista inför fest. Matpreferenser och telefonnummer bör vara
+6. ?? Generera deltagarlista inför fest. Matpreferenser och telefonnummer bör vara
    med på listan.
 
-5. E-tickets. Reservera biljetter. Manuell betalningsverifiering (admin).
-
+7. Reservera biljetter. Manuell betalningsverifiering (admin).
    1. (DONE) Skapa föreställningar (tid, lokal, antal, biljetter, pris osv)
    2. Credit spexare vid köp av biljett.
    3. (DONE) Beställa biljetter.
    4. (DONE) Få ett mail med info vid beställning.
-   5. Inloggad spexare kan köpa biljetter på kredit.
+   5. (DONE) Inloggad spexare kan köpa biljetter på kredit.
 
-6. E-tickets visa/mastercard. (Om inte detta är möjligt behöver vi ett
+8. E-tickets visa/mastercard. (Om inte detta är möjligt behöver vi ett
    automatiskt system som skickar betalningsuppgifter till kunderna.)
+   1. Lägg till ID på alla bokningar av föreställningar, skicka ID't i mailet vid 'approve'.
+   2. Lägg till sök på ID i bookings.
+   3. Lägg till betalning via tex braintree.
 
-7. Kontaktuppgifter
+9. Kontaktuppgifter
 
-8. Årets show
+10. Årets show
 
-9. Manus
+11. Manus
 
-10. Om spexet (historia)
+12. Om spexet (historia)
 
-11. Bildgalleri
+13. Bildgalleri
 
-4. (DELAYED) Extern kalender. Endast synlig för spexare. Innehåller länkar till
+14. (DELAYED) Extern kalender. Endast synlig för spexare. Innehåller länkar till
    Facebook-events.

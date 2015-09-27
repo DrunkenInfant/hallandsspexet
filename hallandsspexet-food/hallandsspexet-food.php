@@ -31,6 +31,7 @@ add_shortcode('hallandsspexet_food_list', 'hallandsspexet_food_list');
 
 function hallandsspexet_food_form($user) {
 	global $FOOD_PREFS;
+	global $HS_FOOD_DISPLAY_NAME;
 	global $HS_FOOD_META_KEY;
 	$preferences = get_user_meta($user->ID, $HS_FOOD_META_KEY);
 ?>

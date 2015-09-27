@@ -15,6 +15,7 @@ $FOOD_PREFS = array(
 $HS_FOOD_META_KEY = 'hallandsspexet_food';
 
 $HS_FOOD_DISPLAY_NAME = 'Allergier och specialkost';
+$HS_FOOD_TABLE_NAME = 'Allergier';
 
 wp_register_style('hallandsspexet_food_style', plugins_url('hallandsspexet-food.css', __FILE__));
 
@@ -61,8 +62,8 @@ function hallandsspexet_food_update($user_id) {
 
 function hallandsspexet_food_users_table($columns) {
 	global $HS_FOOD_META_KEY;
-	global $HS_FOOD_DISPLAY_NAME;
-	$columns[$HS_FOOD_META_KEY] = $HS_FOOD_DISPLAY_NAME;
+	global $HS_FOOD_TABLE_NAME;
+	$columns[$HS_FOOD_META_KEY] = $HS_FOOD_TABLE_NAME;
 	return $columns;
 }
 

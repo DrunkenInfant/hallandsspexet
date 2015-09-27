@@ -9,9 +9,9 @@ $FOOD_PREFS = array(
 	'lactose' => 'Lactose'
 );
 
-$META_KEY = 'hallandsspexet_food';
+$HS_FOOD_META_KEY = 'hallandsspexet_food';
 
-$DISPLAY_VALUE = 'Food preferences';
+$HS_FOOD_DISPLAY_NAME = 'Food preferences';
 
 wp_register_style('hallandsspexet_food_style', plugins_url('hallandsspexet-food.css', __FILE__));
 
@@ -27,16 +27,16 @@ add_shortcode('hallandsspexet_food_list', 'hallandsspexet_food_list');
 
 function hallandsspexet_food_form($user) {
 	global $FOOD_PREFS;
-	global $META_KEY;
-	$preferences = get_user_meta($user->ID, $META_KEY);
+	global $HS_FOOD_META_KEY;
+	$preferences = get_user_meta($user->ID, $HS_FOOD_META_KEY);
 ?>
 
-	<h3><?= $DISPLAY_VALUE ?></h3>
+	<h3><?= $HS_FOOD_DISPLAY_NAME ?></h3>
 	<table class="form-table">
 	<?php foreach ($FOOD_PREFS as $food => $name) { ?>
 		<tr>
 			<th><label><?= $name ?></label></th>
-			<td><input type="checkbox" name="<?= $META_KEY ?>[]" value="<?= $food ?>" <?= in_array($food, $preferences) ? 'checked="checked"' : '' ?>/></td>
+			<td><input type="checkbox" name="<?= $HS_FOOD_META_KEY ?>[]" value="<?= $food ?>" <?= in_array($food, $preferences) ? 'checked="checked"' : '' ?>/></td>
 		</tr>
 	<?php } ?>
 	</table>
@@ -45,29 +45,29 @@ function hallandsspexet_food_form($user) {
 }
 
 function hallandsspexet_food_update($user_id) {
-	global $META_KEY;
+	global $HS_FOOD_META_KEY;
 
-	delete_user_meta($user_id, $META_KEY);
+	delete_user_meta($user_id, $HS_FOOD_META_KEY);
 
-	if (isset($_POST[$META_KEY])) {
-		foreach ($_POST[$META_KEY] as $food) {
-			add_user_meta($user_id, $META_KEY, sanitize_text_field($food));
+	if (isset($_POST[$HS_FOOD_META_KEY])) {
+		foreach ($_POST[$HS_FOOD_META_KEY] as $food) {
+			add_user_meta($user_id, $HS_FOOD_META_KEY, sanitize_text_field($food));
 		}
 	}
 }
 
 function hallandsspexet_food_users_table($columns) {
-	global $META_KEY;
-	global $DISPLAY_VALUE;
-	$columns[$META_KEY] = $DISPLAY_VALUE;
+	global $HS_FOOD_META_KEY;
+	global $HS_FOOD_DISPLAY_NAME;
+	$columns[$HS_FOOD_META_KEY] = $HS_FOOD_DISPLAY_NAME;
 	return $columns;
 }
 
 function hallandsspexet_food_users_table_row($val, $column_name, $user_id) {
-	global $META_KEY;
+	global $HS_FOOD_META_KEY;
 	global $FOOD_PREFS;
 
-	if ($column_name === $META_KEY) {
+	if ($column_name === $HS_FOOD_META_KEY) {
 		$food =  array_map(function ($key) { global $FOOD_PREFS; return $FOOD_PREFS[$key]; }, get_user_meta($user_id, $column_name));
 		return $food ? implode(', ', $food) : '';
 	} else {
@@ -77,13 +77,13 @@ function hallandsspexet_food_users_table_row($val, $column_name, $user_id) {
 
 function hallandsspexet_food_list() {
 	global $FOOD_PREFS;
-	global $META_KEY;
+	global $HS_FOOD_META_KEY;
 	wp_enqueue_style('hallandsspexet_food_style');
 	$users = get_users(array('fields' => [ 'display_name', 'ID' ]));
 ?>
 <ul class="hallandsspexet-food__select-list">
 <?php foreach ($users as $user) { ?>
-	<li class="hallandsspexet-food__select-item" data-foods="<?= implode(',', get_user_meta($user->ID, $META_KEY)) ?>"><?= $user->display_name ?></li>
+	<li class="hallandsspexet-food__select-item" data-foods="<?= implode(',', get_user_meta($user->ID, $HS_FOOD_META_KEY)) ?>"><?= $user->display_name ?></li>
 <?php } ?>
 </ul>
 <ul class="hallandsspexet-food__aggregate-list">

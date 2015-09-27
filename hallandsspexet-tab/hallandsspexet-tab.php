@@ -3,8 +3,9 @@
  * Plugin Name: Hallandsspexet tab
  */
 
-$META_KEY = 'hallandsspexet_tab';
-$DISPLAY_NAME = 'Tab';
+$HS_TAB_META_KEY = 'hallandsspexet_tab';
+
+$HS_TAB_DISPLAY_NAME = 'Tab';
 
 wp_register_style('hallandsspexet_tab_style', plugins_url('hallandsspexet-tab.css', __FILE__));
 
@@ -16,7 +17,7 @@ add_action('admin_menu', 'hallandsspexet_tab_admin_menu');
 add_action('em_booking_save_pre', 'test_em_booking');
 
 function test_em_booking($EM_Booking) {
-	global $META_KEY;
+	global $HS_TAB_META_KEY;
 
 	if (is_user_logged_in()) {
 		$user = wp_get_current_user();
@@ -25,7 +26,7 @@ function test_em_booking($EM_Booking) {
 			'comment' => 'Event: ' . $EM_Booking->get_event()->event_name,
 			'timestamp' => time()
 		);
-		if (add_user_meta($user->ID, $META_KEY, $tab)) {
+		if (add_user_meta($user->ID, $HS_TAB_META_KEY, $tab)) {
 			$EM_Booking->booking_status = 1;
 		}
 	}
@@ -36,13 +37,13 @@ function hallandsspexet_tab_admin_menu() {
 		'Manage tabs',
 		'Manage tabs',
 		'edit_users',
-		$META_KEY . '_admin',
+		$HS_TAB_META_KEY . '_admin',
 		'hallandsspexet_tab_admin_page'
 	);
 }
 
 function hallandsspexet_tab_admin_page() {
-	global $META_KEY;
+	global $HS_TAB_META_KEY;
 
 	wp_enqueue_style('hallandsspexet_tab_style');
 
@@ -65,15 +66,15 @@ function hallandsspexet_tab_admin_page() {
 			'timestamp' => time()
 		);
 
-		if (count($feedback) > 0 || !add_user_meta($_POST['user_id'], $META_KEY, $tab)) {
+		if (count($feedback) > 0 || !add_user_meta($_POST['user_id'], $HS_TAB_META_KEY, $tab)) {
 			$feedback[] = 'Failed to add tab item.';
 		}
 	}
 
 	$users = get_users(array('fields' => [ 'display_name', 'ID' ]));
 	$tabs = array_reduce($users, function ($tabs, $user) {
-		global $META_KEY;
-		$tabs[$user->ID] = get_user_meta($user->ID, $META_KEY);
+		global $HS_TAB_META_KEY;
+		$tabs[$user->ID] = get_user_meta($user->ID, $HS_TAB_META_KEY);
 		return $tabs;
 	}, array());
 ?>
@@ -165,17 +166,17 @@ function hallandsspexet_tab_admin_page() {
 }
 
 function hallandsspexet_tab_users_table($columns) {
-	global $META_KEY;
-	global $DISPLAY_NAME;
+	global $HS_TAB_META_KEY;
+	global $HS_TAB_DISPLAY_NAME;
 
-	$columns[$META_KEY] = $DISPLAY_NAME;
+	$columns[$HS_TAB_META_KEY] = $HS_TAB_DISPLAY_NAME;
 	return $columns;
 }
 
 function hallandsspexet_tab_users_table_row($val, $column_name, $user_id) {
-	global $META_KEY;
+	global $HS_TAB_META_KEY;
 
-	if ($column_name === $META_KEY) {
+	if ($column_name === $HS_TAB_META_KEY) {
 		return array_reduce(get_user_meta($user_id, $column_name), function ($sum, $tab) {
 			return $sum + $tab['value'];
 		}, 0);

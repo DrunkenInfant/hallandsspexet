@@ -5,7 +5,7 @@
 
 $HS_TAB_META_KEY = 'hallandsspexet_tab';
 
-$HS_TAB_DISPLAY_NAME = 'Tab';
+$HS_TAB_DISPLAY_NAME = 'Kredit';
 
 wp_register_style('hallandsspexet_tab_style', plugins_url('hallandsspexet-tab.css', __FILE__));
 
@@ -34,8 +34,8 @@ function test_em_booking($EM_Booking) {
 
 function hallandsspexet_tab_admin_menu() {
 	add_users_page(
-		'Manage tabs',
-		'Manage tabs',
+		'Hantera kredit',
+		'Hantera kredit',
 		'edit_users',
 		$HS_TAB_META_KEY . '_admin',
 		'hallandsspexet_tab_admin_page'
@@ -53,21 +53,21 @@ function hallandsspexet_tab_admin_page() {
 		$updated_tab = $_POST['user_id'];
 
 		if (strlen($_POST['comment']) <= 0) {
-			$feedback[] = 'You must supply a comment.';
+			$feedback[] = 'Kommentar är obligatorisk.';
 		}
 
 		if (!is_numeric($_POST['value'])) {
-			$feedback[] = 'You may only use numeric values.';
+			$feedback[] = 'Endast siffror är tillåtna.';
 		}
 
 		$tab = array(
 			'value' => $_POST['value'],
-			'comment' => 'Manual: ' . $_POST['comment'],
+			'comment' => 'Manuell: ' . $_POST['comment'],
 			'timestamp' => time()
 		);
 
 		if (count($feedback) > 0 || !add_user_meta($_POST['user_id'], $HS_TAB_META_KEY, $tab)) {
-			$feedback[] = 'Failed to add tab item.';
+			$feedback[] = 'Misslyckades med att lägga till kredit.';
 		}
 	}
 
@@ -105,17 +105,17 @@ function hallandsspexet_tab_admin_page() {
 			<?php } ?>
 		<?php } ?>
 		<tr>
-			<th><label for="comment">Comment</label></th>
+			<th><label for="comment">Kommentar</label></th>
 			<td><input type="text" name="comment" id="comment" class="regular-text ltr"></td>
 		</tr>
 		<tr>
-			<th><label for="value">Value</label></th>
+			<th><label for="value">Kronor (negativ mängd tillåten)</label></th>
 			<td><input type="number" name="value" id="value" class="regular-text ltr"></td>
 		</tr>
 	</tbody>
 </table>
 <input type="hidden" name="user_id" id="tab-user-id" />
-<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Add tab item"></p>
+<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Lägg till kredit"></p>
 </form>
 <script>
 (function () {

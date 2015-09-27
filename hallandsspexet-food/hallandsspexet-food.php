@@ -5,13 +5,16 @@
 
 $FOOD_PREFS = array(
 	'vegetarian' => 'Vegetarian',
+	'vegan' => 'Vegan',
 	'gluten' => 'Gluten',
-	'lactose' => 'Lactose'
+	'lactose' => 'Laktos',
+	'nuts' => 'Nötter',
+	'fish' => 'Fisk/Skaldjur'
 );
 
 $HS_FOOD_META_KEY = 'hallandsspexet_food';
 
-$HS_FOOD_DISPLAY_NAME = 'Food preferences';
+$HS_FOOD_DISPLAY_NAME = 'Allergier och specialkost';
 
 wp_register_style('hallandsspexet_food_style', plugins_url('hallandsspexet-food.css', __FILE__));
 

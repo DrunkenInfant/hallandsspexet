@@ -12,11 +12,19 @@ $COMMITTEES = array(
 	'sexet' => __('Sexet'),
 	'dekor' => __('Dekor'),
 	'smink' => __('Smink'),
-	'orkester' => __('Orkester')
+	'orkester' => __('Orkester'),
+	'skadespel' => __('Skådespel'),
+	'dans' => __('Dans'),
+	'teknik' => __('Teknik/effekter'),
+	'festeriet' => __('Festeriet'),
+	'styrelsen' => __('Styrelsen'),
+	'ovrigt' => __('Övrigt'),
+	'veteraner' => __('Veteraner'),
+	'ekonomi' => __('Ekonomi/PR')
 );
 
 $COMMITTEES_META_KEY = 'committee';
-$COMMITTEES_DISPLAY_NAME = 'Committee';
+$COMMITTEES_DISPLAY_NAME = 'Sektioner';
 
 wp_register_style('hallandsspexet_users_style', plugins_url('hallandsspexet-users.css', __FILE__));
 

@@ -15,15 +15,12 @@ $COMMITTEES = array(
 	'sexet' => __('Sexet'),
 	'dekor' => __('Dekor'),
 	'smink' => __('Smink'),
-	'orkester' => __('Orkester'),
+	'syeri' => __('Syeriet'),
+	'orkester' => __('Orkestern'),
 	'skadespel' => __('Skådespel'),
 	'dans' => __('Dans'),
 	'teknik' => __('Teknik/effekter'),
-	'festeriet' => __('Festeriet'),
 	'styrelsen' => __('Styrelsen'),
-	'ovrigt' => __('Övrigt'),
-	'veteraner' => __('Veteraner'),
-	'ekonomi' => __('Ekonomi/PR')
 );
 
 $COMMITTEES_META_KEY = 'committee';
@@ -60,7 +57,7 @@ function hallandsspexet_users_table($columns) {
 		$columns[$key] = $value;
 	}
 
-	//$columns[$COMMITTEES_META_KEY] = $COMMITTEES_DISPLAY_NAME;
+	$columns[$COMMITTEES_META_KEY] = $COMMITTEES_DISPLAY_NAME;
 
 	return $columns;
 }
@@ -72,8 +69,8 @@ function hallandsspexet_users_table_row($val, $column_name, $user_id) {
 
 	if ($CONTACT_FIELDS[$column_name]) {
 		return get_user_meta($user_id, $column_name, true);
-	//} else if ($column_name == $COMMITTEES_META_KEY) {
-		//return $COMMITTEES[get_user_meta($user_id, $column_name, true)];
+	} else if ($column_name == $COMMITTEES_META_KEY) {
+		return implode(', ', array_map(function ($comm) { global $COMMITTEES; return $COMMITTEES[$comm]; }, get_user_meta($user_id, $COMMITTEES_META_KEY)));
 	} else {
 		return $val;
 	}
@@ -94,7 +91,7 @@ function hallandsspexet_users_form($user) {
 	<?php foreach ($COMMITTEES as $key => $value) { ?>
 		<tr>
 			<th><label><?= $value ?></label></th>
-			<td><input type="checkbox" name="<?= $COMMITTEES_META_KEY ?>[]" value="<?= $key ?>" <?= in_array($key, $committees) ? 'checked="checked"' : '' ?>/></td>
+			<td><input type="radio" name="<?= $COMMITTEES_META_KEY ?>[]" value="<?= $key ?>" <?= in_array($key, $committees) ? 'checked="checked"' : '' ?>/></td>
 		</tr>
 	<?php } ?>
 	</table>

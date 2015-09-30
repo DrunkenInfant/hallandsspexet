@@ -41,10 +41,13 @@ WP customizations for hallandsspexet webpage
    personnummer
    email
    telefonnummer
-   utskott
-   matpreferenser
+   adress
+   stad
+   postnummer
+   utskott (ta bort veteraner, Ekonomi, Övrigt, festeriet) (Lägg till syeri)
 
-5. (DONE) generera deltagarlistor för fester med matpreferenser.
+5. Generera deltagarlistor för fester med matpreferenser. Lägg till column i booking table
+   https://plugins.trac.wordpress.org/browser/events-manager/trunk/classes/em-bookings-table.php
 
 6. ?? Generera deltagarlista inför fest. Matpreferenser och telefonnummer bör vara
    med på listan. Filter in events manager?

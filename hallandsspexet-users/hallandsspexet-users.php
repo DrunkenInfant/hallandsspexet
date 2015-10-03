@@ -4,7 +4,7 @@
  */
 
 $CONTACT_FIELDS = array(
-	'phone' => __('Telefonnummer'),
+	'dbem_phone' => __('Telefonnummer'),
 	'streetaddress' => __('Gatuadress'),
 	'postalcode' => __('Postnummer'),
 	'city' => __('Stad'),
@@ -15,11 +15,11 @@ $COMMITTEES = array(
 	'sexet' => __('Sexet'),
 	'dekor' => __('Dekor'),
 	'smink' => __('Smink'),
-	'syeri' => __('Syeriet'),
-	'orkester' => __('Orkestern'),
+	'syeriet' => __('Syeriet'),
+	'orkestern' => __('Orkestern'),
 	'skadespel' => __('Skådespel'),
 	'dans' => __('Dans'),
-	'teknik' => __('Teknik/effekter'),
+	'teknik' => __('Teknik'),
 	'styrelsen' => __('Styrelsen'),
 );
 
@@ -37,6 +37,8 @@ add_action('show_user_profile', 'hallandsspexet_users_form');
 add_action('edit_user_profile', 'hallandsspexet_users_form');
 add_action('personal_options_update', 'hallandsspexet_users_update');
 add_action('edit_user_profile_update', 'hallandsspexet_users_update');
+
+add_shortcode('hallandsspexet_user_list', 'hallandsspexet_user_list');
 
 function hallandsspexet_users_table_committee($columns) {
 	global $COMMITTEES_META_KEY;
@@ -116,9 +118,31 @@ function hallandsspexet_contact_fields($user_contact_fields) {
 	global $CONTACT_FIELDS;
 
 	foreach ($CONTACT_FIELDS as $key => $value) {
-		$user_contact_fields[$key] = $value; }
+		$user_contact_fields[$key] = $value;
+	}
 
 	return $user_contact_fields;
+}
+
+function hallandsspexet_user_list($args) {
+	global $COMMITTEES_META_KEY;
+
+	if (!isset($args['sektion'])) {
+		return;
+	}
+
+	$users = get_users(array(
+		'fields' => [ 'display_name', 'ID', 'user_email' ],
+		'meta_key' => $COMMITTEES_META_KEY,
+		'meta_value' => $args['sektion']
+	));
+
+	$html = '<ul>';
+	foreach ($users as $user) {
+		$html .= '<li>' . $user->display_name . ', ' . $user->user_email . ', ' . get_user_meta($user->ID, 'dbem_phone', true) . '</li>';
+	}
+	$html .= '</ul>';
+	return $html;
 }
 
 ?>

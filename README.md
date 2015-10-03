@@ -20,11 +20,13 @@ WP customizations for hallandsspexet webpage
 
 1. (DONE) Medlemsregistrering (sköts av admin).
 
-2. Medlemslistan är synlig för alla spexare, dock ej för allmänheten.
+2.a (DONE) Medlemslistan är synlig för alla spexare, dock ej för allmänheten.
    Namn
    email
    telefonnummer
    utskott (olika listor)
+
+2.b Medlemslista styling
 
 3.a (DONE) Spexare har nota, kredit för fester, baren och föreställningar.
 	Fester: Auto
@@ -56,6 +58,7 @@ WP customizations for hallandsspexet webpage
    4. (DONE) Få ett mail med info vid beställning.
    5. (DONE) Inloggad spexare kan köpa biljetter på kredit.
    6. Lägg till 'förbrukad' action i bookings table, filter 'em_bookings_table_cols_col_action'
+   7. Fixa mail med filter('em_booking_email_messages')
 
 8. E-tickets visa/mastercard. (Om inte detta är möjligt behöver vi ett
    automatiskt system som skickar betalningsuppgifter till kunderna.)

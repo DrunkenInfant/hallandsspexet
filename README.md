@@ -46,11 +46,8 @@ WP customizations for hallandsspexet webpage
    postnummer
    utskott (ta bort veteraner, Ekonomi, Övrigt, festeriet) (Lägg till syeri)
 
-5. Generera deltagarlistor för fester med matpreferenser. Lägg till column i booking table
+5. (DONE) Generera deltagarlistor för fester med matpreferenser. Lägg till column i booking table
    https://plugins.trac.wordpress.org/browser/events-manager/trunk/classes/em-bookings-table.php
-
-6. ?? Generera deltagarlista inför fest. Matpreferenser och telefonnummer bör vara
-   med på listan. Filter in events manager?
 
 7. Reservera biljetter. Manuell betalningsverifiering (admin).
    1. (DONE) Skapa föreställningar (tid, lokal, antal, biljetter, pris osv)
@@ -58,6 +55,7 @@ WP customizations for hallandsspexet webpage
    3. (DONE) Beställa biljetter.
    4. (DONE) Få ett mail med info vid beställning.
    5. (DONE) Inloggad spexare kan köpa biljetter på kredit.
+   6. Lägg till 'förbrukad' action i bookings table, filter 'em_bookings_table_cols_col_action'
 
 8. E-tickets visa/mastercard. (Om inte detta är möjligt behöver vi ett
    automatiskt system som skickar betalningsuppgifter till kunderna.)
@@ -75,5 +73,5 @@ WP customizations for hallandsspexet webpage
 
 13. Bildgalleri
 
-14. Extern kalender. Endast synlig för spexare. Innehåller länkar till
+14. (DONE) Extern kalender. Endast synlig för spexare. Innehåller länkar till
    Facebook-events.

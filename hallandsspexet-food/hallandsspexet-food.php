@@ -19,8 +19,8 @@ $HS_FOOD_TABLE_NAME = 'Allergier';
 
 wp_register_style('hallandsspexet_food_style', plugins_url('hallandsspexet-food.css', __FILE__));
 
-//add_filter('manage_users_columns', 'hallandsspexet_food_users_table');
-//add_filter('manage_users_custom_column', 'hallandsspexet_food_users_table_row', 15, 3);
+add_filter('em_bookings_table_get_headers', 'hallandsspexet_food_bookings_table', 15, 3);
+add_filter('em_bookings_table_rows_col_' . $HS_FOOD_META_KEY, 'hallandsspexet_food_bookings_table_row', 15, 5);
 
 add_action('show_user_profile', 'hallandsspexet_food_form');
 add_action('edit_user_profile', 'hallandsspexet_food_form');
@@ -61,22 +61,24 @@ function hallandsspexet_food_update($user_id) {
 	}
 }
 
-function hallandsspexet_food_users_table($columns) {
+function hallandsspexet_food_bookings_table($columns, $cvs, $table) {
 	global $HS_FOOD_META_KEY;
 	global $HS_FOOD_TABLE_NAME;
 	$columns[$HS_FOOD_META_KEY] = $HS_FOOD_TABLE_NAME;
+	$table->cols[] = $HS_FOOD_META_KEY;
 	return $columns;
 }
 
-function hallandsspexet_food_users_table_row($val, $column_name, $user_id) {
+function hallandsspexet_food_bookings_table_row($val, $booking, $table, $csv, $object) {
 	global $HS_FOOD_META_KEY;
 	global $FOOD_PREFS;
 
-	if ($column_name === $HS_FOOD_META_KEY) {
-		$food =  array_map(function ($key) { global $FOOD_PREFS; return $FOOD_PREFS[$key]; }, get_user_meta($user_id, $column_name));
-		return $food ? implode(', ', $food) : '';
+	$is_fest = in_array('fest', array_map(function ($cat) { return $cat->slug; }, $booking->get_event()->get_categories()->categories));
+	if ($is_fest) {
+		$food =  array_map(function ($key) { global $FOOD_PREFS; return $FOOD_PREFS[$key]; }, get_user_meta($booking->get_person()->ID, $HS_FOOD_META_KEY));
+		return implode(', ', $food);
 	} else {
-		return $val;
+		return '';
 	}
 }
 

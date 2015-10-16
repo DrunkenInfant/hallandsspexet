@@ -1,6 +1,7 @@
 <?php
 /**
  * Plugin Name: Hallandsspexet food
+ * Version: 	1.0
  */
 
 $FOOD_PREFS = array(

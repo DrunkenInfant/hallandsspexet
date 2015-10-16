@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Hallandsspexet food
- * Version: 	1.0
+ * Version: 	1.0.1
  */
 
 $FOOD_PREFS = array(
@@ -67,8 +67,12 @@ function hallandsspexet_food_update($user_id) {
 function hallandsspexet_food_bookings_table($columns, $cvs, $table) {
 	global $HS_FOOD_META_KEY;
 	global $HS_FOOD_TABLE_NAME;
-	$columns[$HS_FOOD_META_KEY] = $HS_FOOD_TABLE_NAME;
-	$table->cols[] = $HS_FOOD_META_KEY;
+	$event = $table->get_event();
+	$is_fest = $event && in_array('fest', array_map(function ($cat) { return $cat->slug; }, $event->get_categories()->categories));
+	if ($is_fest) {
+		$columns[$HS_FOOD_META_KEY] = $HS_FOOD_TABLE_NAME;
+		$table->cols[] = $HS_FOOD_META_KEY;
+	}
 	return $columns;
 }
 

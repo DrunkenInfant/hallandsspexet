@@ -1,4 +1,4 @@
-PLUGIN_NAMES=food users tab
+PLUGIN_NAMES=food users tab tickets
 BUILD_DIR=build
 
 .PHONY: all plugins

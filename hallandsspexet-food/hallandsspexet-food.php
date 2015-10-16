@@ -9,6 +9,8 @@ $FOOD_PREFS = array(
 	'gluten' => 'Gluten',
 	'lactose' => 'Laktos',
 	'nuts' => 'Nötter',
+	'curry' => 'Curry',
+	'rottkott' => 'Rött kött',
 	'fish' => 'Fisk/Skaldjur'
 );
 

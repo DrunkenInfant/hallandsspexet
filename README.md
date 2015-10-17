@@ -57,14 +57,14 @@ WP customizations for hallandsspexet webpage
    3. (DONE) Beställa biljetter.
    4. (DONE) Få ett mail med info vid beställning.
    5. (DONE) Inloggad spexare kan köpa biljetter på kredit.
-   6. Lägg till 'förbrukad' action i bookings table, filter 'em_bookings_table_cols_col_action'
-   7. Fixa mail med filter('em_booking_email_messages')
+   6. (DONE) Lägg till 'förbrukad' action i bookings table, filter 'em_bookings_table_cols_col_action'
+   7. (DONE) Fixa mail med filter('em_booking_email_messages')
+   8. (DONE) Lägg till ID på alla bokningar av föreställningar, skicka ID't i mailet vid 'approve'.
+   9. (DONE) Lägg till sök på ID i bookings.
 
 8. E-tickets visa/mastercard. (Om inte detta är möjligt behöver vi ett
    automatiskt system som skickar betalningsuppgifter till kunderna.)
-   1. Lägg till ID på alla bokningar av föreställningar, skicka ID't i mailet vid 'approve'.
-   2. Lägg till sök på ID i bookings.
-   3. Lägg till betalning via tex braintree.
+   1. Lägg till betalning via tex braintree.
 
 9. Kontaktuppgifter
 

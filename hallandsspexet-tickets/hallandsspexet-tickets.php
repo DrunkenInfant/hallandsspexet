@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Hallandsspexet tickets
- * Version: 	0.0.2
+ * Version: 	0.1.0
  */
 
 
@@ -24,10 +24,7 @@ function hallandsspexet_tickets_email($message, $booking) {
 	global $HS_TICKETS_CATEGORY_NAME;
 	global $HS_TICKETS_PLACEHOLDER;
 
-	$is_show = in_array($HS_TICKETS_CATEGORY_NAME, array_map(function ($cat) { return $cat->slug; }, $booking->get_event()->get_categories()->categories));
-	if ($is_show) {
-		$message['user']['body'] = str_replace($HS_TICKETS_PLACEHOLDER, get_ticket_id($booking->booking_id, $booking->event_id, $booking->person_id), $message['user']['body']);
-	}
+	$message['user']['body'] = str_replace($HS_TICKETS_PLACEHOLDER, get_ticket_id($booking->booking_id, $booking->event_id, $booking->person_id), $message['user']['body']);
 
 	return $message;
 }
@@ -37,12 +34,8 @@ function hallandsspexet_tickets_bookings_table($columns, $cvs, $table) {
 	global $HS_TICKETS_TABLE_NAME;
 	global $HS_TICKETS_CATEGORY_NAME;
 
-	$event = $table->get_event();
-	$is_show = $event && in_array($HS_TICKETS_CATEGORY_NAME, array_map(function ($cat) { return $cat->slug; }, $event->get_categories()->categories));
-	if ($is_show) {
-		$columns[$HS_TICKETS_META_KEY] = $HS_TICKETS_TABLE_NAME;
-		$table->cols[] = $HS_TICKETS_META_KEY;
-	}
+	$columns[$HS_TICKETS_META_KEY] = $HS_TICKETS_TABLE_NAME;
+	$table->cols[] = $HS_TICKETS_META_KEY;
 	return $columns;
 }
 
@@ -50,12 +43,7 @@ function hallandsspexet_tickets_bookings_table_row($val, $booking, $table, $csv,
 	global $HS_TICKETS_META_KEY;
 	global $HS_TICKETS_CATEGORY_NAME;
 
-	$is_show = in_array($HS_TICKETS_CATEGORY_NAME, array_map(function ($cat) { return $cat->slug; }, $booking->get_event()->get_categories()->categories));
-	if ($is_show) {
-		return get_ticket_id($booking->booking_id, $booking->event_id, $booking->person_id);
-	} else {
-		return '';
-	}
+	return get_ticket_id($booking->booking_id, $booking->event_id, $booking->person_id);
 }
 
 function get_consume_link($booking, $action, $name) {
@@ -75,18 +63,15 @@ function hallandsspexet_tickets_booking_actions($actions, $booking) {
 	global $HS_TICKETS_CATEGORY_NAME;
 	global $HS_TICKETS_CONSUME_META_KEY;
 
-	$is_show = in_array($HS_TICKETS_CATEGORY_NAME, array_map(function ($cat) { return $cat->slug; }, $booking->get_event()->get_categories()->categories));
-	if ($is_show) {
-		if ($booking->booking_meta[$HS_TICKETS_CONSUME_META_KEY]) {
-			$action = 'bookings_unconsume';
-			$name = 'Ångra förbrukning';
-		} else {
-			$action = 'bookings_consume';
-			$name = 'Förbruka';
-		}
-
-		$actions['consume'] = get_consume_link($booking, $action, $name);
+	if ($booking->booking_meta[$HS_TICKETS_CONSUME_META_KEY]) {
+		$action = 'bookings_unconsume';
+		$name = 'Ångra förbrukning';
+	} else {
+		$action = 'bookings_consume';
+		$name = 'Förbruka';
 	}
+
+	$actions['consume'] = get_consume_link($booking, $action, $name);
 	return $actions;
 }
 

@@ -17,7 +17,7 @@ add_filter('em_bookings_table_get_headers', 'hallandsspexet_tickets_bookings_tab
 add_filter('em_bookings_table_rows_col_' . $HS_TICKETS_META_KEY, 'hallandsspexet_tickets_bookings_table_row', 15, 5);
 
 function get_ticket_id($booking_id, $event_id, $person_id) {
-	return substr(base_convert(sha1(implode(':', array($booking_id, $event_id, $person_id))), 16, 10), 0, 6);
+	return substr(base_convert(sha1(implode(':', array($booking_id, $event_id, $person_id))), 16, 10), 0, 8);
 }
 
 function hallandsspexet_tickets_email($message, $booking) {

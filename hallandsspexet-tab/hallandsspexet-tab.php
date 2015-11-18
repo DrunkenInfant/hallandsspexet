@@ -70,7 +70,7 @@ function hallandsspexet_tab_admin_page() {
 		}
 	}
 
-	$users = get_users(array('fields' => [ 'display_name', 'ID' ]));
+	$users = get_users(array('fields' => [ 'display_name', 'ID', 'user_email' ]));
 	$tabs = array_reduce($users, function ($tabs, $user) {
 		global $HS_TAB_META_KEY;
 		$tabs[$user->ID] = get_user_meta($user->ID, $HS_TAB_META_KEY);
@@ -80,7 +80,8 @@ function hallandsspexet_tab_admin_page() {
 <ul class="hallandsspexet-tab__select-list">
 <?php foreach ($users as $user) { ?>
 	<li class="hallandsspexet-tab__select-item" data-user="<?= $user->ID ?>">
-		<?= $user->display_name ?>
+		<?= $user->display_name ?>,
+		<?= $user->user_email ?>
 		<span><?= !isset($tabs[$user->ID]) ? 0 :
 		array_reduce($tabs[$user->ID], function ($sum, $tab) {
 			return $sum + $tab['value'];

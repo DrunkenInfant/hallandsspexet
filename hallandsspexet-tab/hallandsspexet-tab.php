@@ -15,8 +15,10 @@ add_action('em_booking_save_pre', 'test_em_booking');
 
 function test_em_booking($EM_Booking) {
 	global $HS_TAB_META_KEY;
+	$event = $EM_Booking->get_event();
 
-	if (is_user_logged_in()) {
+	$is_show = $event && in_array('show', array_map(function ($cat) { return $cat->slug; }, $event->get_categories()->categories));
+	if (is_user_logged_in() && !$is_show) {
 		$user = wp_get_current_user();
 		$tab = array(
 			'value' => $EM_Booking->booking_price,

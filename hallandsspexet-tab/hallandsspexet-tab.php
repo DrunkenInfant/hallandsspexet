@@ -9,9 +9,6 @@ $HS_TAB_DISPLAY_NAME = 'Kredit';
 
 wp_register_style('hallandsspexet_tab_style', plugins_url('hallandsspexet-tab.css', __FILE__));
 
-//add_filter('manage_users_columns', 'hallandsspexet_tab_users_table');
-//add_filter('manage_users_custom_column', 'hallandsspexet_tab_users_table_row', 15, 3);
-
 add_action('admin_menu', 'hallandsspexet_tab_admin_menu');
 
 add_action('em_booking_save_pre', 'test_em_booking');
